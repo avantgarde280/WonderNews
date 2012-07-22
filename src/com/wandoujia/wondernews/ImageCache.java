@@ -13,7 +13,6 @@ import android.os.Handler;
 import android.widget.ImageView;
 
 public class ImageCache {
-    public static final int LOAD_COMPELETE = 0;
     private static ImageCache instance = null;
     private Context context;
     private LinkedHashMap<String, SoftReference<Bitmap>> map;
@@ -69,7 +68,7 @@ public class ImageCache {
 
         @Override
         protected void onPostExecute(Void result) {
-            handler.sendEmptyMessage(LOAD_COMPELETE);
+            handler.sendEmptyMessage(Consts.LOAD_COMPELETE);
             super.onPostExecute(result);
         }
 

@@ -1,6 +1,10 @@
 package com.wandoujia.wondernews;
 
 import java.util.ArrayList;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.view.LayoutInflater;
@@ -11,15 +15,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class CoverAdapter extends BaseAdapter {
-    private ArrayList<String> titles;
-    private ArrayList<String> covers;
+    private Source[] sources;
     private Context context;
     private LayoutInflater inflater;
 
-    public CoverAdapter(ArrayList<String> titles, ArrayList<String> covers,
-            Context context) {
-        this.titles = titles;
-        this.covers = covers;
+    public CoverAdapter(Source[] sources, Context context) {
+        this.sources = sources;
         this.context = context;
         inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -27,17 +28,17 @@ public class CoverAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return titles.size();
+        return sources.length;
     }
 
     @Override
     public Object getItem(int position) {
-        return titles.get(position);
+        return sources.length;
     }
 
     @Override
     public long getItemId(int position) {
-        return position / 2;
+        return position;
     }
 
     @Override
@@ -56,10 +57,10 @@ public class CoverAdapter extends BaseAdapter {
         TextView titleView = (TextView) view.findViewById(R.id.title);
         ImageView coverView = (ImageView) view.findViewById(R.id.cover);
 
-        titleView.setText(titles.get(position));
+        titleView.setText(sources[position].source);
         Bitmap bitmap = ImageCache.getInstance(context).getImage(
-                covers.get(position));
-        if(bitmap != null) {
+                "file:///sdcard/WonderNews/baidu/baidu_app_files/vol17d.jpg");
+        if (bitmap != null) {
             coverView.setImageBitmap(bitmap);
         }
     }
